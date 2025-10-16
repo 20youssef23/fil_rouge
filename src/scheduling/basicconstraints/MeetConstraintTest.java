@@ -9,8 +9,8 @@ public class MeetConstraintTest {
 
         MeetConstraint mc = new MeetConstraint(a1, a2);
 
-        System.out.println("Test 1 (100, 110) : " + mc.isSatisfied(100, 110)); // true
-        System.out.println("Test 2 (100, 111) : " + mc.isSatisfied(100, 111)); // false
-        System.out.println("Test 3 (100, 100) : " + mc.isSatisfied(100, 100)); // false
+        System.out.println("Test 1 (100, 110) : " + mc.isSatisfied(100, 110)); 
+        System.out.println("Test 2 (100, 111) : " + mc.isSatisfied(100, 111)); 
+        System.out.println("Test 3 (100, 100) : " + mc.isSatisfied(100, 100)); 
     }
 }
