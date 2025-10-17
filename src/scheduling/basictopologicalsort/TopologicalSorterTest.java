@@ -2,6 +2,8 @@ package scheduling.basictopologicalsort;
 
 import scheduling.activities.Activity;
 import scheduling.basicconstraints.PrecedenceConstraint;
+import schedulingtests.basictopologicalsort.TopologicalSorterTests;
+
 import java.util.HashSet;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,17 +19,16 @@ public class TopologicalSorterTest {
         Activity getDressed = new Activity("get dressed", 2);
         Activity breakfast = new Activity("have breakfast", 15);
 
-
         HashSet<Activity> activities = new HashSet<>();
         activities.add(getUp);
         activities.add(goToWork);
         activities.add(shower);
-        activities.add (brushTeeth);
+        activities.add(brushTeeth);
         activities.add(getDressed);
         activities.add(breakfast);
 
         HashSet<PrecedenceConstraint> constraints = new HashSet<>();
-        constraints.add(new PrecedenceConstraint(getUp,breakfast));
+        constraints.add(new PrecedenceConstraint(getUp, breakfast));
         constraints.add(new PrecedenceConstraint(getUp, getDressed));
         constraints.add(new PrecedenceConstraint(breakfast, brushTeeth));
         constraints.add(new PrecedenceConstraint(shower, getDressed));
@@ -36,15 +37,24 @@ public class TopologicalSorterTest {
         constraints.add(new PrecedenceConstraint(getUp, shower));
         constraints.add(new PrecedenceConstraint(breakfast, goToWork));
 
-        ArrayList<Activity> order = topologicalSorter.bruteForceSort(activities,constraints);
-        HashMap<Activity, Integer> schedule = topologicalSorter.schedule(activities,constraints,500);
+        ArrayList<Activity> order = topologicalSorter.bruteForceSort(activities, constraints);
+        HashMap<Activity, Integer> schedule = topologicalSorter.schedule(activities, constraints, 500);
 
-        System.out.println("order et horaires");
-        for (activities a : order){
-            System.out.println(" " + a.getDescription() + ":" + schedule.get(a));
+        if (order == null || schedule == null) {
+            System.out.println("No valid schedule found.");
+        } else {
+            System.out.println("Ordonnancement et emploi du temps :");
+            for (Activity a : order) {
+                System.out.println(" - " + a.getDescription() + " à " + schedule.get(a));
+            }
         }
 
 
-
+        System.out.println("\n=== Tests automatiques ===");
+        boolean ok = true;
+        TopologicalSorterTests tester = new TopologicalSorterTests();
+        ok = ok && tester.testBruteForceSort();
+        ok = ok && tester.testSchedule();
+        System.out.println(ok ? "All tests passed" : "At least one test failed");
     }
 }

@@ -28,6 +28,7 @@ public class TopologicalSorter {
         return res;
     }
     public Activity findActivity(HashSet<Activity> copyAcctivity, ArrayList<Activity> res , HashSet<PrecedenceConstraint> constraints){
+
         for (Activity a : copyAcctivity){
             boolean found = true;
 
@@ -47,9 +48,11 @@ public class TopologicalSorter {
     public HashMap<Activity,Integer> schedule(HashSet<Activity> activities, HashSet<PrecedenceConstraint> constraints, int startDate){
 
         ArrayList<Activity> orderActivities = bruteForceSort(activities, constraints);
+        if (orderActivities == null) {
+            return null;
+        }
 
         HashMap<Activity,Integer> time = new HashMap<>();
-        int currentTime = startDate;
 
         for(Activity a : orderActivities){
             int earliestStart = startDate;
