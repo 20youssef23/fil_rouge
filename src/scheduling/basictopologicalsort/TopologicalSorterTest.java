@@ -37,7 +37,7 @@ public class TopologicalSorterTest {
         constraints.add(new PrecedenceConstraint(breakfast, goToWork));
 
         ArrayList<Activity> order = topologicalSorter.bruteForceSort(activities,constraints);
-        HashMap<wActivity, Integer> schedule = topologicalSorter.schedule(activities,constraints,500);
+        HashMap<Activity, Integer> schedule = topologicalSorter.schedule(activities,constraints,500);
 
         System.out.println("order et horaires");
         for (activities a : order){
