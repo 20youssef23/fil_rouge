@@ -1,7 +1,7 @@
 package scheduling.basictopologicalsort;
 
 import scheduling.activities.Activity;
-import scheduling.basicconstraints.PrecedenceConstraint;
+import scheduling.factoredconstraints.PrecedenceConstraint;
 import schedulingtests.basictopologicalsort.TopologicalSorterTests;
 
 import java.util.HashSet;
