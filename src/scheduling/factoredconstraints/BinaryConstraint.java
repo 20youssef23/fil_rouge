@@ -2,7 +2,7 @@ package scheduling.factoredconstraints;
 
 import scheduling.activities.Activity;
 
-public class BinaryConstraint{
+public abstract class BinaryConstraint{
     protected Activity firstActivity;
     protected Activity secondActivity;
 
